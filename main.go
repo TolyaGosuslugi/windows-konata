@@ -74,11 +74,12 @@ func main() {
 	}
 
 	//setting sounds in regedit
-	fmt.Printf("Setting sound in regedit...\n")
-	//regedit.ChangeValue(".Default", outFolder+"/DefaultBeep.wav") //ts replaces all ".Default" in every sound
+	fmt.Printf("Setting sounds in regedit...\n")
+	regedit.ChangeValue(".Default", outFolder+"/DefaultBeep.wav")
 	regedit.ChangeValue("SystemExclamation", outFolder+"/Exclamation.wav")
 	regedit.ChangeValue("SystemHand", outFolder+"/CriticalStop.wav")
 	regedit.ChangeValue("WindowsLogoff", outFolder+"/Logoff.wav")
+	regedit.ChangeValue("SystemExit", outFolder+"/Logoff.wav")
 	regedit.ChangeValue("WindowsLogon", outFolder+"/Logon.wav")
 	regedit.ChangeValue("WindowsUAC", outFolder+"/UserAccControl.wav")
 }
