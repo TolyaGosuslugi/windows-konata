@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"runtime"
@@ -13,13 +14,12 @@ import (
 )
 
 func main() {
-	fmt.Printf("%s\n\n", color.CyanString("Welcome to 'Windows Konata Edition' installer!"))
+	fmt.Printf("%s\n\n", color.CyanString("Welcome to 'Windows Konata Edition' installer :3"))
 
 	// checking if os is windows
 	fmt.Printf("Checking OS... ")
 	if runtime.GOOS != "windows" {
-		fmt.Printf("%s\n", color.RedString("This program is for Windows only. Exiting..."))
-		os.Exit(1)
+		display.Err(errors.New("This program is for Windows only. Exiting..."))
 	} else {
 		fmt.Printf("%s\n", color.GreenString("Ok!"))
 	}
@@ -74,7 +74,7 @@ func main() {
 	}
 
 	//setting sounds in regedit
-	fmt.Printf("Setting sounds in regedit...\n")
+	fmt.Printf("Changing sounds in regedit...\n")
 	regedit.ChangeValue(".Default", outFolder+"/DefaultBeep.wav")
 	regedit.ChangeValue("SystemExclamation", outFolder+"/Exclamation.wav")
 	regedit.ChangeValue("SystemHand", outFolder+"/CriticalStop.wav")
