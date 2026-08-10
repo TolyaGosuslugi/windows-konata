@@ -9,7 +9,7 @@ import (
 )
 
 func ChangeValue(param string, value string) {
-	k, err := registry.OpenKey(registry.CURRENT_USER, fmt.Sprintf(`AppEvents\Schemes\Apps\.Default\%s\.Current`, param), registry.SET_VALUE)
+	k, err := registry.OpenKey(registry.CURRENT_USER, fmt.Sprintf(`AppEvents\Schemes\Apps\.Default\%s`, param), registry.SET_VALUE)
 	if err != nil {
 		display.Err(err)
 	}
