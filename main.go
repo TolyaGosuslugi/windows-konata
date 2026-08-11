@@ -26,14 +26,14 @@ func main() {
 		fmt.Printf("%s\n", color.GreenString("Ok!"))
 	}
 
-	fmt.Printf("Enter number:\n%s\n%s\n:", color.CyanString("0. Install Konata's sounds"), color.CyanString("1. Return sounds to Windows Default"))
+	fmt.Printf("Enter number:\n%s\n%s\n%s\n:", color.CyanString("1. Install Konata's sounds"), color.CyanString("2. Return sounds to Windows Default"), color.CyanString("0. Exit"))
 	num, _ := bufio.NewReader(os.Stdin).ReadString('\n')
 	num = strings.TrimSpace(num)
 
 	fmt.Printf("\n")
 
 	switch num {
-	case "0":
+	case "1":
 		//////////////////////////  Install Konata's sounds  //////////////////////////
 		homeDir, _ := os.UserHomeDir()
 		outFolder := homeDir + "/konata-sounds"
@@ -97,7 +97,7 @@ func main() {
 		//regedit.ChangeValue("WindowsLogon\\.Current", outFolder+"/Logon.wav")
 		regedit.ChangeValue("WindowsUAC\\.Current", outFolder+"/UserAccControl.wav")
 
-	case "1":
+	case "2":
 		//////////////////////////  Return sounds to Windows Default  //////////////////////////
 		fmt.Printf("Returning sounds to Windows Default...\n")
 		regedit.ChangeValue(".Default\\.Current", regedit.GetValue(".Default\\.Default"))
@@ -107,8 +107,10 @@ func main() {
 		//regedit.ChangeValue("SystemExit\\.Current", regedit.GetValue("SystemExit\\.Default"))
 		//regedit.ChangeValue("WindowsLogon\\.Current", regedit.GetValue("WindowsLogon\\.Default"))
 		regedit.ChangeValue("WindowsUAC\\.Current", regedit.GetValue("WindowsUAC\\.Default"))
+	case "0":
+		os.Exit(0)
 	default:
-		fmt.Printf("Please, enter 0 or 1!")
+		fmt.Printf("Please, enter 1, 2 or 0!")
 		os.Exit(0)
 	}
 }
